@@ -1,22 +1,44 @@
 <template>
-  <div class="login">
+  <form class="login" @submit.prevent="submit">
     <h2>Клон Gmail</h2>
     <div class="inp">
       <label for="email">Email: </label>
-      <input type="email" />
+      <input type="email" v-model="email" />
     </div>
     <div class="inp">
       <label for="email">Пароль: </label>
-      <input type="password" />
+      <input type="password" v-model="password" />
     </div>
     <div class="but">
-      <button>Войти</button>
-      <button>Забыли пароль</button>
+      <button type="submit">Войти</button>
+      <RouterLink to="/forger" v-slot="{ navigate }"
+        ><button @click="navigate">Забыли пароль</button></RouterLink
+      >
     </div>
-  </div>
+  </form>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  inject: ["login"],
+  computed: {
+    isValid() {
+      return this.email != "" && this.password != "";
+    },
+  },
+  methods: {
+    submit() {
+      if (this.isValid) {
+        this.login();
+      }
+    },
+  },
+};
 </script>
 <style scoped>
 .but {
@@ -51,6 +73,7 @@ button:hover {
   flex-direction: column;
   gap: 20px;
   align-items: center;
+  box-shadow: 0 8px 24px rgba(15, 15, 15, 0.32);
 }
 input {
   padding: 10px;

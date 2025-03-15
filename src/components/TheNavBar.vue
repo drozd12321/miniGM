@@ -2,14 +2,17 @@
   <header>
     <h3>Gmail</h3>
     <div class="grid">
-      <div>Главная</div>
-      <div>Почта</div>
-      <div>Выйти</div>
+      <RouterLink to="/dashboard">Главная</RouterLink>
+      <RouterLink to="/mail">Почта</RouterLink>
+      <div @click.prevent="logOut">Выйти</div>
     </div>
   </header>
 </template>
 <script>
-export default {};
+export default {
+  props: ["visible"],
+  inject: ["logOut", "goToMail", "goToDashboard"],
+};
 </script>
 
 <style>
@@ -21,6 +24,7 @@ header {
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
   margin: 0;
+  width: 100%;
 }
 .grid {
   display: grid;
@@ -32,5 +36,12 @@ header {
 }
 div:hover {
   cursor: pointer;
+}
+.active {
+  border-bottom: 2px solid white;
+}
+a {
+  text-decoration: none;
+  color: white;
 }
 </style>

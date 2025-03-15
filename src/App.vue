@@ -1,9 +1,10 @@
 <script>
+import { RouterView } from "vue-router";
+
 import TheNavBar from "./components/TheNavBar.vue";
-import Login from "./views/Login.vue";
 
 export default {
-  components: { Login, TheNavBar },
+  components: { TheNavBar },
   data() {
     return {
       emails: [
@@ -32,26 +33,47 @@ export default {
           text: "Сообщение которое появляется шестым",
         },
       ],
+      isAuth: false,
     };
+  },
+  methods: {
+    login() {
+      this.isAuth = true;
+      this.$router.push("/dashboard");
+    },
+    logOut() {
+      this.isAuth = false;
+      this.$router.push("/");
+    },
+    goToMail() {
+      this.$router.push("/mail");
+    },
+    goToDashboard() {
+      this.$router.push("/dashboard");
+    },
   },
   provide() {
     return {
       emails: this.emails,
+      login: this.login,
+      logOut: this.logOut,
+      goToMail: this.goToMail,
+      goToDashboard: this.goToDashboard,
     };
   },
 };
 </script>
 
 <template>
-  <TheNavBar></TheNavBar>
   <div class="container">
-    <Login></Login>
+    <RouterView></RouterView>
   </div>
 </template>
 
 <style scoped>
 .container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
