@@ -18,6 +18,9 @@ header {
   color: white;
   display: flex;
   justify-content: space-around;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin: 0;
 }
 .grid {
   display: grid;
