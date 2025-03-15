@@ -27,4 +27,7 @@ header {
   text-align: center;
   align-items: center;
 }
+div:hover {
+  cursor: pointer;
+}
 </style>
