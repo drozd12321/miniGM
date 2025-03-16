@@ -2,8 +2,15 @@
   <header>
     <h3>Gmail</h3>
     <div class="grid">
-      <RouterLink to="/dashboard">Главная</RouterLink>
-      <RouterLink to="/mail">Почта</RouterLink>
+      <RouterLink :to="{ name: 'home' }">Главная</RouterLink>
+      <RouterLink to="/mail" custom v-slot="{ navigate, href }"
+        ><a
+          href="#"
+          @click="navigate"
+          :class="{ active: $route.path.indexOf(href) != -1 }"
+          >Почта</a
+        ></RouterLink
+      >
       <div @click.prevent="logOut">Выйти</div>
     </div>
   </header>

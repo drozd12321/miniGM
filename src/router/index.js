@@ -1,4 +1,4 @@
-import Home from "@/components/Home.vue";
+import AppMailMsg from "@/components/AppMailMsg.vue";
 import Dashboard from "@/views/Dashboard.vue";
 import Forger from "@/views/Forger.vue";
 import Login from "@/views/Login.vue";
@@ -14,8 +14,20 @@ const router = createRouter({
       path: "/forger",
       component: Forger,
     },
-    { path: "/dashboard", component: Dashboard },
-    { path: "/mail", component: Mail },
+    { path: "/dashboard", component: Dashboard, name: "home" },
+    {
+      path: "/mail",
+      component: Mail,
+      name: "mail",
+      children: [
+        {
+          path: ":mailid?",
+          component: AppMailMsg,
+          props: true,
+        },
+      ],
+    },
+    { path: "/:notfound(.*)", redirect: "/login" },
   ],
   linkActiveClass: "active",
   linkExactActiveClass: "active",

@@ -1,5 +1,4 @@
 <template>
-  <TheNavBar></TheNavBar>
   <div class="forger">
     <h3>Не повезло раз забыли пароль!!</h3>
     <div class="but">

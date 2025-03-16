@@ -1,11 +1,14 @@
 <template>
-  <TheNavBar></TheNavBar>
   <div class="mail">
     <h3>Здесь можете прочитать письма</h3>
   </div>
-  <div class="mail item" v-for="email in emails">
-    <span>{{ email.id }}</span>
-    <span>{{ email.text }}</span>
+  <div class="cont">
+    <div class="mail item">
+      <div class="span" v-for="email in emails" :key="email.id">
+        <RouterLink :to="`/mail/${email.id}`">{{ email.text }}</RouterLink>
+      </div>
+    </div>
+    <RouterView></RouterView>
   </div>
 </template>
 <script>
@@ -17,23 +20,40 @@ export default {
 };
 </script>
 <style scoped>
+h3 {
+  font-size: 25px;
+}
+.cont {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgb(27, 26, 26);
+  box-shadow: 0 8px 24px rgba(15, 15, 15, 0.32);
+  border-radius: 10px;
+}
 .mail {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(27, 26, 26);
   color: white;
   width: 75%;
   border-radius: 15px;
-  margin-top: 6rem;
-  box-shadow: 0 8px 24px rgba(15, 15, 15, 0.32);
 }
 .item {
-  margin-top: 2rem;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding: 10px;
-  font-size: 20px;
+  flex-direction: column;
+  padding: 15px;
+  font-size: 25px;
+  width: auto;
+  height: auto;
+}
+.span {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+.span:hover {
+  background-color: rgb(45, 44, 44);
 }
 </style>

@@ -10,27 +10,27 @@ export default {
       emails: [
         {
           id: 1,
-          text: "Сообщение которое появляется первым",
+          text: "Сообщение первое",
         },
         {
           id: 2,
-          text: "Сообщение которое появляется вторым",
+          text: "Сообщение второе",
         },
         {
           id: 3,
-          text: "Сообщение которое появляется третьим",
+          text: "Сообщение третье",
         },
         {
           id: 4,
-          text: "Сообщение которое появляется червертым",
+          text: "Сообщение червертое",
         },
         {
           id: 5,
-          text: "Сообщение которое появляется пятым",
+          text: "Сообщение пятое",
         },
         {
           id: 6,
-          text: "Сообщение которое появляется шестым",
+          text: "Сообщение шестое",
         },
       ],
       isAuth: false,
@@ -39,11 +39,20 @@ export default {
   methods: {
     login() {
       this.isAuth = true;
-      this.$router.push("/dashboard");
+      if (this.$route.query.page) {
+        this.$router.push(this.$route.query.page);
+      } else {
+        this.$router.push("/dashboard");
+      }
     },
     logOut() {
       this.isAuth = false;
-      this.$router.push("/");
+      this.$router.push({
+        path: "/login",
+        query: {
+          page: this.$route.path,
+        },
+      });
     },
     goToMail() {
       this.$router.push("/mail");
@@ -65,6 +74,7 @@ export default {
 </script>
 
 <template>
+  <TheNavBar></TheNavBar>
   <div class="container">
     <RouterView></RouterView>
   </div>
