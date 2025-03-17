@@ -1,4 +1,5 @@
 import AppMailMsg from "@/components/AppMailMsg.vue";
+import VueX from "@/components/VueX.vue";
 import Dashboard from "@/views/Dashboard.vue";
 import Forger from "@/views/Forger.vue";
 import Login from "@/views/Login.vue";
@@ -28,6 +29,7 @@ const router = createRouter({
       ],
     },
     { path: "/:notfound(.*)", redirect: "/login" },
+    { path: "/vuex", component: VueX, name: "vuex" },
   ],
   linkActiveClass: "active",
   linkExactActiveClass: "active",

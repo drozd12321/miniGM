@@ -11,6 +11,7 @@
           >Почта</a
         ></RouterLink
       >
+      <RouterLink :to="{ name: 'vuex' }">VueX</RouterLink>
       <div @click.prevent="logOut">Выйти</div>
     </div>
   </header>
@@ -35,7 +36,7 @@ header {
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 15px;
   font-size: 20px;
   text-align: center;
